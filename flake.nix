@@ -14,6 +14,7 @@
               pkgs.nats-server
               pkgs.postgresql
               pkgs.process-compose
+              pkgs.httpie
             ];
 
             shellHook = ''

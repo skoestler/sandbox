@@ -16,14 +16,20 @@ Use process compose to start the database and message broker
 process-compose up .
 ```
 
-Start the app
-
-```shell
-...
-```
-
 Connect to database
 
 ```shell
 psql -U postgres
+```
+
+Start the app
+
+```shell
+npm run server
+```
+
+Call endpoint
+
+```shell
+http POST localhost:3000/greet name=Shayne
 ```

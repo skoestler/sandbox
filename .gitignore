@@ -1,3 +1,4 @@
 .idea/
 .direnv/
 data/
+node_modules/

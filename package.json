@@ -13,10 +13,11 @@
   "license": "MIT",
   "author": "",
   "type": "commonjs",
-  "main": "src/server.ts",
+  "main": "src/server/server.ts",
   "scripts": {
-    "server": "node src/server.ts",
-    "repl": "node src/repl.ts"
+    "server": "node src/server/server.ts",
+    "dev:client": "vite",
+    "build:client": "vite build"
   },
   "dependencies": {
     "ajv": "^8.18.0",
@@ -24,9 +25,15 @@
     "moleculer": "^0.14.35",
     "moleculer-repl": "^0.7.4",
     "moleculer-web": "^0.10.8",
-    "nats": "^2.29.3"
+    "nats": "^2.29.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@types/node": "^25.3.5"
+    "@types/node": "^25.3.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "vite": "^7.3.1"
   }
 }

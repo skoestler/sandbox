@@ -3,7 +3,7 @@ import type {FromSchema} from "json-schema-to-ts";
 
 const {ServiceBroker} = require('moleculer');
 const HTTPServer = require('moleculer-web');
-const AjvValidator = require('./ajv-validator.ts');
+const AjvValidator = require('../common/ajv-validator.ts');
 
 const broker = new ServiceBroker({
     nodeID: "node-1",

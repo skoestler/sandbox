@@ -1,7 +1,7 @@
-const {Validators} = require('moleculer');
-const Ajv = require('ajv');
+import { Validators } from 'moleculer';
+import Ajv from 'ajv';
 
-class AjvValidator extends Validators.Base {
+export default class AjvValidator extends Validators.Base {
     ajv: any;
 
     constructor() {
@@ -21,5 +21,3 @@ class AjvValidator extends Validators.Base {
         };
     }
 }
-
-module.exports = AjvValidator;

@@ -1,9 +1,10 @@
-import type {Context} from 'moleculer';
-import type {FromSchema} from "json-schema-to-ts";
+import type {FromSchema} from 'json-schema-to-ts';
+import {Context, ServiceBroker} from 'moleculer';
+import SocketServer from 'moleculer-io';
+import HTTPServer from 'moleculer-web';
 
-const {ServiceBroker} = require('moleculer');
-const HTTPServer = require('moleculer-web');
-const AjvValidator = require('../common/ajv-validator.ts');
+import AjvValidator from '../common/ajv-validator.ts';
+import {SayHello} from '../common/actions.ts';
 
 const broker = new ServiceBroker({
     nodeID: "node-1",
@@ -13,7 +14,7 @@ const broker = new ServiceBroker({
 
 broker.createService({
     name: "gateway",
-    mixins: [HTTPServer],
+    mixins: [HTTPServer, SocketServer as any],
     settings: {
         routes: [
             {
@@ -25,20 +26,12 @@ broker.createService({
     }
 });
 
-const payload = {
-    type: 'object',
-    properties: {
-        name: {type: 'string', minLength: 1}
-    },
-    additionalProperties: false
-} as const;
-
 broker.createService({
     name: 'greeter',
     actions: {
         sayHello: {
-            params: payload,
-            handler(ctx: Context<FromSchema<typeof payload>>) {
+            params: SayHello,
+            handler(ctx: Context<FromSchema<typeof SayHello>>) {
                 return `Hello, ${ctx.params.name}!`;
             }
         }

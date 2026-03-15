@@ -1,18 +1,24 @@
-import React, {useCallback} from "react";
-import {Socket} from "socket.io-client";
-import {greeter} from "./socketHelper.ts";
+import {useShallow} from "zustand/react/shallow";
+import {useStore} from "./store.ts";
 
-export default function App({socket}: { socket: Socket }) {
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-        event => {
-            greeter.sayHello(socket, {name: 'Shayne'}).then(console.log);
-        },
-        []
-    );
+export default function App({}: {}) {
+    const {name, setName, sayHello} = useStore(useShallow(state => ({
+        name: state.name,
+        setName: state.setName,
+        sayHello: state.sayHello
+    })));
 
-    return <h1>Hello
-        <button onClick={handleClick}>
-            emit
-        </button>
-    </h1>;
+    return <>
+        <h1>Hello
+            <button onClick={sayHello}>
+                emit
+            </button>
+        </h1>
+        <input
+            type="text"
+            onChange={setName}
+            value={name}
+        />
+        <h2>Hello {name}!</h2>
+    </>;
 }

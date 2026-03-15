@@ -1,3 +1,5 @@
+import {FromSchema} from "json-schema-to-ts";
+
 export const SayHello = {
     type: 'object',
     properties: {
@@ -5,3 +7,5 @@ export const SayHello = {
     },
     additionalProperties: false
 } as const
+
+export type SayHello = FromSchema<typeof SayHello>;

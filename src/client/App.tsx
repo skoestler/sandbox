@@ -1,11 +1,11 @@
 import React, {useCallback} from "react";
 import {Socket} from "socket.io-client";
-import {sayHello} from "./socketHelper.ts";
+import {greeter} from "./socketHelper.ts";
 
 export default function App({socket}: { socket: Socket }) {
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
         event => {
-            sayHello(socket, {name: 'Shayne'}).then(console.log);
+            greeter.sayHello(socket, {name: 'Shayne'}).then(console.log);
         },
         []
     );

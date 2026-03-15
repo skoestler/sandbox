@@ -1,16 +1,14 @@
 import {Socket} from "socket.io-client";
 import {SayHello} from '../common/actions';
-import {FromSchema} from "json-schema-to-ts";
 
-export function sayHello(socket: Socket, payload: FromSchema<typeof SayHello>): Promise<string> {
-    return new Promise((resolve, reject) => {
-        socket.emit('call', 'greeter.sayHello', payload,
-            function (err: any, res: any) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(res);
-                }
-            });
+const makeCall: <P, R>(a: string) => (s: Socket, p: P) => Promise<R> =
+    (action) => (socket, payload) => new Promise((resolve, reject) => {
+        socket.emit('call', action, payload, function (err: any, res: any) {
+            if (err) reject(err);
+            else resolve(res);
+        });
     });
-}
+
+export const greeter = {
+    sayHello: makeCall<SayHello, string>('greeter.sayHello')
+};

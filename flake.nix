@@ -17,10 +17,12 @@
               pkgs.terraform
               pkgs.process-compose
               pkgs.httpie
+              pkgs.etcd
             ];
 
             shellHook = ''
                 export PGHOST=$PWD/data/postgres/locks
+                export ETCD_DATA_DIR=$PWD/data/etcd
             '';
         };
     };

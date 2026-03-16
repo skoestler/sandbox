@@ -7,3 +7,5 @@ processes:
       postgres -D ./data/postgres -k "$(pwd)/data/postgres/locks"
   nats:
     command: nats-server
+  etcd:
+    command: etcd

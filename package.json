@@ -16,8 +16,8 @@
   "main": "src/server/server.ts",
   "scripts": {
     "server": "node src/server/server.ts",
-    "dev:client": "vite",
-    "build:client": "vite build"
+    "client:dev": "vite",
+    "client:build": "vite build"
   },
   "dependencies": {
     "ajv": "^8.18.0",

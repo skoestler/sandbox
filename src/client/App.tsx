@@ -2,23 +2,23 @@ import {useShallow} from "zustand/react/shallow";
 import {useStore} from "./store.ts";
 
 export default function App({}: {}) {
-    const {name, setName, sayHello} = useStore(useShallow(state => ({
-        name: state.name,
-        setName: state.setName,
-        sayHello: state.sayHello
+    const {message, setMessage, pushMessage} = useStore(useShallow(state => ({
+        message: state.message,
+        setMessage: state.setMessage,
+        pushMessage: state.pushMessage
     })));
 
     return <>
-        <h1>Hello
-            <button onClick={sayHello}>
-                emit
-            </button>
-        </h1>
-        <input
-            type="text"
-            onChange={setName}
-            value={name}
-        />
-        <h2>Hello {name}!</h2>
+        <form onSubmit={pushMessage}>
+            <label htmlFor="message-input">New Cluster Message</label>
+            <input
+                name="message"
+                id="message-input"
+                type="text"
+                onChange={setMessage}
+                value={message}
+            />
+            <button type="submit">Submit</button>
+        </form>
     </>;
 }

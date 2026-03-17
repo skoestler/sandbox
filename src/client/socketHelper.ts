@@ -1,5 +1,5 @@
 import {io, Socket} from "socket.io-client";
-import {SayHello} from '../common/actions';
+import {ClusterGet, ClusterSet, SayHello} from '../common/actions';
 
 const socket: Socket = io("/");
 
@@ -11,6 +11,7 @@ const makeCall: <P, R>(a: string) => (p: P) => Promise<R> =
         });
     });
 
-export const greeter = {
-    sayHello: makeCall<SayHello, string>('greeter.sayHello')
+export const cluster = {
+    get: makeCall<ClusterGet, string>('cluster.get'),
+    set: makeCall<ClusterSet, void>('cluster.set')
 };

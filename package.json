@@ -16,6 +16,7 @@
   "main": "src/server/server.ts",
   "scripts": {
     "server": "node src/server/server.ts",
+    "repl": "node src/server/repl.ts",
     "client:dev": "vite",
     "client:build": "vite build"
   },
